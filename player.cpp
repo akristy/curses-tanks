@@ -36,10 +36,34 @@ void Player::Draw(Ground & g)
 	mvaddch(g.ground.at(col) - 1, col + 1, '@');
 }
 
-bool Player::Hit(int line, int column)
+bool Player::Hit(int playerline, int playercol)  //playerline and playercolumn are positions for tank
 {
-	if(pNy == line && pNx == column)
+    
+    if(( Shotline > playerline + 1 || Shotline < playerline - 1) && ( Shotcol > playercol + 1 || Shotcol < playercol - 1))
+    {
+        return false; // it does not hit
+    }
+    else
+    {
+        return true; // ?
+    }
 }
+
+    
+    //Shoot();
+    
+//	if(line == l && column == c)
+//    {
+//        return true;
+//    }
+//    else
+//    {
+//        return false;
+//    }
+    
+    
+    
+
 
 
 void Player::PowerUp()
