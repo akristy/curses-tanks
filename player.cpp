@@ -88,4 +88,8 @@ void Player::DrawSettings(int turn)
 	ss = stringstream();
 	ss << setw(10) << left << "Power: " << setw(6) << power;
 	mvaddstr(line++, starting_column, ss.str().c_str());
+
+	ss = stringstream();
+	ss << setw(10) << left << "Health: " << setw(6) << health;
+	mvaddstr(line++, starting_column, ss.str().c_str());
 }

@@ -22,6 +22,7 @@ public:
 	int col;
 	double power;
 	double angle;
+	double health = 30;
 	Side s;
 
 	static const int power_increment;
