@@ -52,8 +52,8 @@ void Shoot(Ground & g, Player * players, int turn)
 	double y_component = sin(angle) * players[turn].power * 0.2;
 	double x_component = cos(angle) * players[turn].power * 0.2;
 	
-	double pNx;
-	double pNy;
+	double pNx; //position of astrics  x = columns
+	double pNy; //position of astrics  y = lines
 	double time_divisor = 15.0;
 	
 	if (players[turn].s == RIGHT)
@@ -69,7 +69,7 @@ void Shoot(Ground & g, Player * players, int turn)
 
 		pNx = (int)(p0x + di * x_component);
 		pNy = p0y + di * y_component + (di * di + di) * -9.8 / time_divisor / 1.5;
-		pNy = (int)(LINES - pNy);
+		pNy = (int)(LINES - pNy); //where the y gets flipped
 		if (pNx < 1 || pNx >= COLS - 2)
 			break;
 		if (pNy < 1) {
