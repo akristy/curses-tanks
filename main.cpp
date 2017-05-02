@@ -5,7 +5,7 @@
 #include <ctime>
 #include <cmath>
 
-#if defined(WIN32)
+#if defined(_WIN32)
 #include <Windows.h>
 #include "curses.h"
 #else
