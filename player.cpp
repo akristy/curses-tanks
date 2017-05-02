@@ -36,6 +36,12 @@ void Player::Draw(Ground & g)
 	mvaddch(g.ground.at(col) - 1, col + 1, '@');
 }
 
+bool Player::Hit(int line, int column)
+{
+	if(pNy == line && pNx == column)
+}
+
+
 void Player::PowerUp()
 {
 	power += power_increment;

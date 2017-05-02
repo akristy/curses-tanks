@@ -18,8 +18,11 @@ public:
 	void PowerDown();
 	void AngleUp();
 	void AngleDown();
+	bool Hit(int line, int column);
 
 	int col;
+	int column;
+	int line;
 	double power;
 	double angle;
 	double health = 30;
