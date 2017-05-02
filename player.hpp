@@ -18,11 +18,11 @@ public:
 	void PowerDown();
 	void AngleUp();
 	void AngleDown();
-	bool Hit(int line, int column);
+	bool Hit(int playerline, int playercol); //tank positions
 
 	int col;
-	int column;
-	int line;
+	int Shotcol; //column position of shot
+	int Shotline; // line position of shot
 	double power;
 	double angle;
 	double health = 30;
