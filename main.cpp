@@ -116,19 +116,19 @@ int main(int argc, char * argv[])
 			keep_going = false;
 			break;
 
-		case '<':
+		case 258:
 			players[turn].PowerDown();
 			break;
 
-		case '>':
+		case 259:
 			players[turn].PowerUp();
 			break;
 
-		case 'u':
+		case 261:
 			players[turn].AngleUp();
 			break;
 
-		case 'd':
+		case 260:
 			players[turn].AngleDown();
 			break;
 
