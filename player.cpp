@@ -23,6 +23,7 @@ Player::Player()
 	col = 0;
 	angle = 45.0;
 	power = 50.0;
+	health = 30;
 }
 
 void Player::Initialize(int column, Side side)
@@ -34,35 +35,27 @@ void Player::Initialize(int column, Side side)
 void Player::Draw(Ground & g)
 {
 	mvaddch(g.ground.at(col) - 1, col + 1, '@');
+	row = g.ground.at(col);
 }
 
-bool Player::Hit(int playerline, int playercol)  //playerline and playercolumn are positions for tank
-{
-    
-    if(( Shotline > playerline + 1 || Shotline < playerline - 1) && ( Shotcol > playercol + 1 || Shotcol < playercol - 1))
+bool Player::Hit(int shotPosX, int shotPosY)  //playerline and playercolumn are positions for tank
+{   
+	bool registered = true;
+    if(( col + 1 <= shotPosX && shotPosX >= col - 1) && ( row  -1 <= shotPosY && row + 1  >= shotPosY))
     {
-        return false; // it does not hit
+		//do not return before an instruction!
+		health -= 10;
     }
     else
     {
-        return true; // ?
+		registered = false; // it does not hit
+		
     }
+	return registered;
 }
 
-    
-    //Shoot();
-    
-//	if(line == l && column == c)
-//    {
-//        return true;
-//    }
-//    else
-//    {
-//        return false;
-//    }
-    
-    
-    
+
+
 
 
 

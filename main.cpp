@@ -81,8 +81,13 @@ void Shoot(Ground & g, Player * players, int turn)
 		if (pNy > g.ground.at((int)pNx))
 			break;
 
+		
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
+		if (players[0].Hit(pNx, pNy) || players[1].Hit(pNx, pNy)) {
+			refresh();
+			break;
+		}
 		refresh();
 		MySleep(50);
 	}
