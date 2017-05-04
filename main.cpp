@@ -73,7 +73,7 @@ void Shoot(Ground & g, Player * players, int turn)
 		if (pNx < 1 || pNx >= COLS - 2)
 			break;
 		if (pNy < 1) {
-			MySleep(50);
+			MySleep(30);
 			continue;
 		}
 	//	if (pNy >= LINES - 2)
@@ -86,12 +86,13 @@ void Shoot(Ground & g, Player * players, int turn)
 		addch('*');
 		int me = turn;
 		int other = turn - 1;
-		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me])) {
+		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me]))
+		{
 			refresh();
 			break;
 		}
 		refresh();
-		MySleep(50);
+		MySleep(30);
 	}
 }
 
