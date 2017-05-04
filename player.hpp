@@ -18,20 +18,19 @@ public:
 	void PowerDown();
 	void AngleUp();
 	void AngleDown();
-	bool Hit(int shotPosX, int shotPosY, Player & other); //tank positions
+	bool Hit(int shotPosX, int shotPosY, Player & other, Ground & g);
 	
 	
 
 
 	int col;
 	int row;
-	int Shotcol; //column position of shot
-	int Shotline; // line position of shot
+    
 	double power;
 	double angle;
 	int health;
-	int new_health;
 	Side s;
+    bool hit;
 
 	static const int power_increment;
 	static const double angle_increment;
