@@ -63,6 +63,8 @@ bool Player::Hit(int shotPosX, int shotPosY, Player & other)  //playerline and p
 void Player::PowerUp()
 {
 	power += power_increment;
+    if (power >=80)
+        power = 80;
 }
 
 void Player::PowerDown()
