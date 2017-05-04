@@ -38,13 +38,14 @@ void Player::Draw(Ground & g)
 	row = g.ground.at(col);
 }
 
-bool Player::Hit(int shotPosX, int shotPosY)  //playerline and playercolumn are positions for tank
+bool Player::Hit(int shotPosX, int shotPosY, Player & other)  //playerline and playercolumn are positions for tank
 {   
 	bool registered = true;
-    if(( col + 1 <= shotPosX && shotPosX >= col - 1) && ( row  -1 <= shotPosY && row + 1  >= shotPosY))
+    if(( col + 1 >= shotPosX && shotPosX >= col - 1) && ( row  -1 >= shotPosY && row + 1  >= shotPosY))
     {
 		//do not return before an instruction!
 		health -= 10;
+		//other.health -= 10;
     }
     else
     {

@@ -84,7 +84,9 @@ void Shoot(Ground & g, Player * players, int turn)
 		
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
-		if (players[0].Hit(pNx, pNy) || players[1].Hit(pNx, pNy)) {
+		int me = turn;
+		int other = turn - 1;
+		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me])) {
 			refresh();
 			break;
 		}
