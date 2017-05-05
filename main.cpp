@@ -51,11 +51,11 @@ void Shoot(Ground & g, Player * players, int turn)
 	double angle = players[turn].angle / 180.0 * PI;
 	double y_component = sin(angle) * players[turn].power * 0.2;
 	double x_component = cos(angle) * players[turn].power * 0.2;
-	
+
 	double pNx; //position of astrics  x = columns
 	double pNy; //position of astrics  y = lines
 	double time_divisor = 15.0;
-	
+
 	if (players[turn].s == RIGHT)
 		x_component = -x_component;
 
@@ -76,30 +76,31 @@ void Shoot(Ground & g, Player * players, int turn)
 			MySleep(30);
 			continue;
 		}
-	//	if (pNy >= LINES - 2)
-	//		break;
+		//	if (pNy >= LINES - 2)
+		//		break;
 		if (pNy > g.ground.at((int)pNx))
 			break;
 
-		if (pNy == g.ground.at(players[1-turn].col) && pNx == players[1- turn].col)
-        {
-            players[1-turn].health -= 10;
-        }
-        
-        if (pNy == g.ground.at(players[turn].col) && pNx == players[turn].col)
-        {
-            players[turn].health -= 10;
-        }
-        
+		if (pNy == g.ground.at(players[1 - turn].col) && pNx == players[1 - turn].col)
+		{
+			players[1 - turn].health -= 10;
+		}
+
+		if (pNy == g.ground.at(players[turn].col) && pNx == players[turn].col)
+		{
+			players[turn].health -= 10;
+		}
+
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
 		int me = turn;
-		int other = turn - 1;
+		int other = 1 - turn;
 
-//		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me]))
-//		{
+		//		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me]))
+		//		{
 
-		if (players[me].Hit(pNx, pNy, players[other], g)  || players[other].Hit(pNx, pNy, players[me], g)) {
+		if (players[me].Hit(pNx, pNy, players[other], g) || players[other].Hit(pNx, pNy, players[me], g))
+		{
 
 			refresh();
 			break;
