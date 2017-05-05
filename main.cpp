@@ -95,12 +95,12 @@ void Shoot(Ground & g, Player * players, int turn)
 		addch('*');
 		int me = turn;
 		int other = turn - 1;
-<<<<<<< HEAD
+
 		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me]))
 		{
-=======
+
 		if (players[me].Hit(pNx, pNy, players[other], g)  || players[other].Hit(pNx, pNy, players[me], g)) {
->>>>>>> origin/master
+
 			refresh();
 			break;
 		}
