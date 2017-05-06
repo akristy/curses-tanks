@@ -36,9 +36,9 @@ void DrawScreen(Ground & g, Player * players, int turn)
 {
 	erase();
 	box(stdscr, 0, 0);
-	g.Draw();
 	players[0].Draw(g);
 	players[1].Draw(g);
+	g.Draw();
 	players[0].DrawSettings(turn);
 	players[1].DrawSettings(turn);
 	refresh();
@@ -78,35 +78,31 @@ void Shoot(Ground & g, Player * players, int turn)
 		}
 		//	if (pNy >= LINES - 2)
 		//		break;
-		if (pNy > g.ground.at((int)pNx))
-			break;
-
-		if (pNy == g.ground.at(players[1 - turn].col) && pNx == players[1 - turn].col)
-		{
-			players[1 - turn].health -= 10;
-		}
-
-		if (pNy == g.ground.at(players[turn].col) && pNx == players[turn].col)
-		{
-			players[turn].health -= 10;
-		}
-
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
-		int me = turn;
-		int other = 1 - turn;
-
-		//		if (players[me].Hit(pNx, pNy, players[other]) || players[other].Hit(pNx, pNy, players[me]))
-		//		{
-
-		if (players[me].Hit(pNx, pNy, players[other], g) || players[other].Hit(pNx, pNy, players[me], g))
-		{
-
-			refresh();
+		if (pNy > g.ground.at((int)pNx))
 			break;
+		bool hit = false;
+		if ((pNy >= g.ground.at(players[1 - turn].col -1) && pNy <= g.ground.at(players[1 - turn].col + 1)) 
+			&& (pNx >= players[1 - turn].col - 1 && pNx <= players[1 - turn].col + 1))
+		{
+			players[1 - turn].health -= 10;
+			hit = true;
+			g.ground.clear();
+			g.InitializeGround();
+		}
+		else if ((pNy >= g.ground.at(players[turn].col - 1) && pNy <= g.ground.at(players[turn].col + 1))
+			&& (pNx >= players[turn].col - 1 && pNx <= players[turn].col + 1))
+		{
+			players[turn].health -= 10;
+			hit = true;
 		}
 		refresh();
 		MySleep(30);
+		
+		if (hit) {
+			break;
+		}
 	}
 }
 
@@ -161,13 +157,18 @@ int main(int argc, char * argv[])
 #endif
 			Shoot(g, players, turn);
 			turn = 1 - turn;
+			if (turn < 0 || turn > 1) {
+				turn = 1;
+			}
 			break;
 
 		default:
 			show_char = true;
 			break;
 		}
+
 		DrawScreen(g, players, turn);
+		
 		if (show_char) {
 			move(0, 1);
 			stringstream ss;

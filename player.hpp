@@ -18,7 +18,6 @@ public:
 	void PowerDown();
 	void AngleUp();
 	void AngleDown();
-	bool Hit(int shotPosX, int shotPosY, Player & other, Ground & g);
 	
 	
 

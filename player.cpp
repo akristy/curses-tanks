@@ -35,35 +35,17 @@ void Player::Initialize(int column, Side side)
 
 void Player::Draw(Ground & g)
 {
-	mvaddch(g.ground.at(col) - 1, col + 1, '@'); //col is left or right while g.ground is up and down
-	
+	if (col > 0) 
+	{
+		g.ground[col - 1] = g.ground[col];
+	}
+	if (col < g.ground.size() - 1) 
+	{
+		g.ground[col + 1] = g.ground[col];
+	}
+	mvaddch(g.ground[col] - 1, col + 1, '@'); //col is left or right while g.ground is up and down	
 }
 
-bool Player::Hit(int shotPosX, int shotPosY, Player & other, Ground & g)  //playerline and playercolumn are positions for tank
-{
-    
-    int other_tank_line = g.ground.at(other.col) - 1;
-    int other_tank_col = other.col + 1;
-   
-    
-	bool registered = true;
-    
-
-    
-    if((other_tank_line + 1 <= shotPosX && shotPosX >= other_tank_line -1 ) && ( other_tank_col  - 1 >= shotPosY && other_tank_col + 1  <= shotPosY))
-    {
-        
-		//do not return before an instruction!
-		other.health -= 10;
-		
-    }
-    else
-    {
-		registered = false; // it does not hit
-		
-    }
-	return registered;
-}
 
 
 
