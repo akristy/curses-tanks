@@ -80,6 +80,7 @@ void Shoot(Ground & g, Player * players, int turn)
 		//		break;
 		move((int)pNy - 1, (int)pNx + 1);
 		addch('*');
+		
 		if (pNy > g.ground.at((int)pNx))
 			break;
 		bool hit = false;
@@ -97,10 +98,12 @@ void Shoot(Ground & g, Player * players, int turn)
 			players[turn].health -= 10;
 			hit = true;
 		}
+		
 		refresh();
 		MySleep(30);
 		
-		if (hit) {
+		if (hit)
+		{
 			break;
 		}
 	}
@@ -114,6 +117,7 @@ int main(int argc, char * argv[])
 	bool keep_going = true;
 	Ground g;
 	Player players[2];
+	Player new_players[2];
 
 	initscr();
 	noecho();
@@ -166,9 +170,46 @@ int main(int argc, char * argv[])
 			show_char = true;
 			break;
 		}
+		if (players[turn].health == 0 || players[1 - turn].health == 0)
+		{
+			erase();
+			box(stdscr, 0, 0);
+			move(LINES/2, COLS/2 - 7);
+			addstr("Game Over!!!!!");
+			move(LINES / 2 + 2, COLS / 2 - 7);
+			addstr("Continue? (y/n)");
+			int c = getch();
+			switch (c)
+			{
+			case 'y':
+				keep_going = true;
+				
+				new_players[0].Initialize(rand() % (COLS / 4), LEFT);
+				new_players[1].Initialize(rand() % (COLS / 4) + 3 * COLS / 4 - 2, RIGHT);
+				players[0] = new_players[0];
+				players[1] = new_players[1];
+				turn = 0;
+				DrawScreen(g, players, turn);				
+				break;
+			case 'n':
+				erase();
+				addstr("Hit any key to exit");
+				refresh();
+				getch();
+				echo();
+				endwin();
+				return 0;
+				break;
+			}
 
-		DrawScreen(g, players, turn);
-		
+			refresh();
+			MySleep(30);
+
+		}
+		else
+		{
+			DrawScreen(g, players, turn);
+		}
 		if (show_char) {
 			move(0, 1);
 			stringstream ss;
@@ -177,9 +218,9 @@ int main(int argc, char * argv[])
 			refresh();
 		}
 	}
-	erase();
+	/*erase();
 	addstr("Hit any key to exit");
-	refresh();
+	refresh();*/
 	getch();
 	echo();
 	endwin();
