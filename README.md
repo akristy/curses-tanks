@@ -11,4 +11,4 @@ The controls are, like the game, rather simple. You can control the tank using w
 
 # The Code
 The code is a bit more complex than the game it makes. It uses a basic understanding of trajectory to create the shot that the tank fires and a bit of knowledge on how ncurses refreshes to redraw the tanks. Our code uses a ground class, a player class, and a 2DVec class. The ground class generates the randomized ground that the game takes place on. The player class draws the players in and chooses a random place on the map for each to spawn in on. The 2DVec is what makes the shells fly in a realistic fashion and drawing it to show you how to adjust your next shot. It does this through overloads of the function that simplify our function called shoot in our main. However, we ran into a strange bug that needs to be fixed involving the 2DVec 
-that changed our shot location to something strange, however it can be easily reverted to working code with the 2DVEC. 
+that changed our shot location to something strange, however it can be easily reverted to working code without the 2DVec. 
