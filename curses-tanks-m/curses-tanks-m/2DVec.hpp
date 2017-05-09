@@ -14,16 +14,16 @@
 
 class Vec2D
 {
-    public:
-    Vec2D operator + (const Vec2D & v);
-    Vec2D operator * (double d);
-    void operator = (const Vec2D & v);
+    
+public:
+    double x, y;
+    Vec2D();
+    Vec2D operator + (const Vec2D & other);
+    Vec2D operator * (const double d);
+    Vec2D operator * (const int d);
+    void operator = (const Vec2D & other);
+
 };
-
-
-
-
-
 
 
 #endif /* _DVec_hpp */

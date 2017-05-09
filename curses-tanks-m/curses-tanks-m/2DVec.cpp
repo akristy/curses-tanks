@@ -9,27 +9,43 @@
 #include "2DVec.hpp"
 
 
-Vec2D :: operator + (const Vec2D & other)
+Vec2D::Vec2D()
 {
-    Vec2D v;
-    double x;
-    double y;
     
+    
+    
+    
+    
+    
+}
 
-    v.x = x + other.x;
-    v.y = y + other.y;
+
+Vec2D Vec2D :: operator+(const Vec2D & other)
+{
+    x += other.x;
+    y += other.y;
+    return *this;
+    
  
 }
-Vec2D :: operator * (const Vec2D & other)
+Vec2D Vec2D :: operator * (const double d)
 {
-    Vec2D v;
-    double x;
-    double y;
     
-    
-    v.x = x * other.x;
-    v.y = y * other.y;
+    x = x * d;
+    y = y * d;
+   
+    return *this;
     
 }
+Vec2D Vec2D :: operator * (const int d)
+{
+    
+    x = x * d;
+    y = y * d;
+    
+    return *this;
+    
+}
+
 
 
