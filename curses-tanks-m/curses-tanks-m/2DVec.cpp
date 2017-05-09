@@ -12,20 +12,23 @@
 Vec2D::Vec2D()
 {
     
+    double x;
+    double y;
     
     
-    
+
     
     
 }
 
 
-Vec2D Vec2D :: operator+(const Vec2D & other)
+Vec2D Vec2D :: operator+(const Vec2D & other,)
 {
+    
     x += other.x;
     y += other.y;
-    return *this;
     
+    return Vec2D (*this);
  
 }
 Vec2D Vec2D :: operator * (const double d)
@@ -34,7 +37,7 @@ Vec2D Vec2D :: operator * (const double d)
     x = x * d;
     y = y * d;
    
-    return *this;
+    return Vec2D (*this);
     
 }
 Vec2D Vec2D :: operator * (const int d)
@@ -43,7 +46,7 @@ Vec2D Vec2D :: operator * (const int d)
     x = x * d;
     y = y * d;
     
-    return *this;
+    return Vec2D (*this);
     
 }
 
